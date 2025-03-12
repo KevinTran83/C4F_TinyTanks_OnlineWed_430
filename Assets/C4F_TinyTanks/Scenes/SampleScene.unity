@@ -130,7 +130,8 @@ GameObject:
   - component: {fileID: 10921031}
   - component: {fileID: 10921030}
   - component: {fileID: 10921029}
-  - component: {fileID: 10921028}
+  - component: {fileID: 10921034}
+  - component: {fileID: 10921033}
   - component: {fileID: 10921032}
   m_Layer: 0
   m_Name: Tank
@@ -139,18 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &10921028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10921027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c78a341db015e6f42b3b3ad64504bcaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &10921029
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -220,10 +209,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 10921027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a25f6bc78bf864b8975b12d26e0e16, type: 3}
+  m_Script: {fileID: 11500000, guid: bc2484c0dcc8f994284630897584556a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  turret: {fileID: 1623702654}
+--- !u!114 &10921033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10921027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4480d698143e1ed4ba5d95d497361c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proj: {fileID: 6891736912992340665, guid: 293e82ad89d9f42478a5f80461c3eac3, type: 3}
+  muzzle: {fileID: 123421218}
+--- !u!114 &10921034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10921027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78a341db015e6f42b3b3ad64504bcaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &123421217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123421218}
+  m_Layer: 0
+  m_Name: muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123421218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123421217}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.102, y: 0, z: 1.311}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1623702653}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,13 +560,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.101664044, y: 0, z: 0, w: 0.9948188}
+  m_LocalPosition: {x: 0, y: 5.92, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.67, y: 0, z: 0}
 --- !u!1 &1277227175
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623702653}
+  - component: {fileID: 1623702654}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -832,8 +879,22 @@ Transform:
   m_Children:
   - {fileID: 1277227176}
   - {fileID: 1899534845}
+  - {fileID: 123421218}
   m_Father: {fileID: 10921031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1623702654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623702652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e633368a107dba4db97e3d02c659ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 100
 --- !u!1 &1694045761
 GameObject:
   m_ObjectHideFlags: 0
