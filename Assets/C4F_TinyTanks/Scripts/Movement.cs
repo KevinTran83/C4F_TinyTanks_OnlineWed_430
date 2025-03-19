@@ -16,4 +16,9 @@ public class Movement : MonoBehaviour
     {
         agent.SetDestination(dest);
     }
+
+    public bool HasCompletedPath(float reachDist)
+    {
+        return agent.remainingDistance < reachDist;
+    }
 }
