@@ -14,11 +14,13 @@ public class Movement : MonoBehaviour
 
     public void MoveToDestination(Vector3 dest)
     {
+        if (!agent.isActiveAndEnabled) return;
         agent.SetDestination(dest);
     }
 
     public bool HasCompletedPath(float reachDist)
     {
+        if (!agent.isActiveAndEnabled) return false;
         return agent.remainingDistance < reachDist;
     }
 }

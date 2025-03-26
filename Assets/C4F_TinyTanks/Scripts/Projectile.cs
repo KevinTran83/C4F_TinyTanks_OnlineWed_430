@@ -4,6 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 20;
+    public float damage = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,4 +14,11 @@ public class Projectile : MonoBehaviour
     }
 
     private void SelfDestruct() { Destroy(gameObject); }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        HP targetHP = collision.gameObject.GetComponent<HP>();
+        if (targetHP == null) targetHP = collision.gameObject.GetComponentInParent<HP>();
+        if (targetHP != null) targetHP.ChangeHP(-damage);
+    }
 }

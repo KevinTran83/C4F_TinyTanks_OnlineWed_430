@@ -13,7 +13,7 @@ public class CPUController : MonoBehaviour
     private Shoot shoot;
 
     public Turret turret;
-    public Transform target; // @todo Make private
+    private Transform target;
 
     private Coroutine shootRoutine;
 
@@ -27,10 +27,14 @@ public class CPUController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Movement code
         Vector3 dest = transform.position + Random.insideUnitSphere * moveRange;
         if ( movement.HasCompletedPath(0.05f)
           && NavMesh.SamplePosition(dest, out NavMeshHit hit, 1, NavMesh.AllAreas)
            ) movement.MoveToDestination(dest);
+
+        // Shoot at target code
+        if (FoundTarget()) return;
 
         turret.Turn(target.position);
 
@@ -39,6 +43,21 @@ public class CPUController : MonoBehaviour
           && Vector3.Dot(targetDir, turret.transform.forward) > 0.9f
           && shootRoutine == null
            ) shootRoutine = StartCoroutine("Shoot");
+    }
+
+    private bool FoundTarget()
+    {
+        if (target == null)
+        {
+            Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, 50.0f);
+            for (int i = 0; i < nearbyEnemies.Length; i++)
+            {   // If itself, skip to next enemy.
+                if (nearbyEnemies[i].gameObject == gameObject) continue;
+                target = nearbyEnemies[i].transform;
+                break;
+            }
+        }
+        return target == null;
     }
 
     private IEnumerator Shoot()
